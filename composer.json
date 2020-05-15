@@ -1,0 +1,23 @@
+{
+  "name": "silverstripe-saml-idp",
+  "description": "Adds a identity provider component to SilverStripe",
+  "type": "silverstripe-module",
+  "keywords": ["silverstripe", "sso", "saml", "identity", "singlesignon"],
+  "require": {
+    "php": ">=5.3",
+    "composer/installers": "*",
+    "silverstripe/framework": "3.*",
+    "silverstripe/cms": "3.*",
+    "simplesamlphp/saml2": "^3.0"
+  },
+  "config": {
+    "process-timeout": 900
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/simplesamlphp/simplesamlphp.git"
+    }
+  ],
+  "minimum-stability": "dev"
+}
