@@ -16,7 +16,7 @@ run ```composer update```
 
 You can update ```authsources.php config.php saml20-sp-remote.php```. Only if you want.
 
-set env variables
+set ```IdpVariables``` in ```config```
 
 ```
 SIMPLESAMLPHP_IDP_SECRET_SALT

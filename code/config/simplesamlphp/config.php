@@ -96,7 +96,7 @@ $config = [
      * A possible way to generate a random salt is by running the following command from a unix shell:
      * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
-    'secretsalt' => getenv('SIMPLESAMLPHP_IDP_SECRET_SALT') ?: '98youde13tsgxnmlevxiyx3scapbcai0',
+    'secretsalt' => Config::inst()->get('IdpVariables', 'SIMPLESAMLPHP_IDP_SECRET_SALT') ?: '98youde13tsgxnmlevxiyx3scapbcai0',
 
     /*
      * This password must be kept secret, and modified from the default value 123.
@@ -104,7 +104,7 @@ $config = [
      * metadata listing and diagnostics pages.
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
      */
-    'auth.adminpassword' => getenv('SIMPLESAMLPHP_IDP_ADMIN_PASSWORD') ?: 'idp123',
+    'auth.adminpassword' => Config::inst()->get('IdpVariables', 'SIMPLESAMLPHP_IDP_ADMIN_PASSWORD') ?: 'idp123',
 
     /*
      * Set this options to true if you want to require administrator password to access the web interface
@@ -470,7 +470,7 @@ $config = [
      * This value is the duration of the session in seconds. Make sure that the time duration of
      * cookies both at the SP and the IdP exceeds this duration.
      */
-    'session.duration' => intval(getenv('SIMPLESAMLPHP_IDP_SESSION_DURATION_SECONDS')) > 0 ? intval(getenv('SIMPLESAMLPHP_IDP_SESSION_DURATION_SECONDS')) : 8 * (60 * 60), // default 8 hours.
+    'session.duration' => intval(Config::inst()->get('IdpVariables', 'SIMPLESAMLPHP_IDP_SESSION_DURATION_SECONDS')) > 0 ? intval(Config::inst()->get('IdpVariables', 'SIMPLESAMLPHP_IDP_SESSION_DURATION_SECONDS')) : 8 * (60 * 60), // default 8 hours.
 
     /*
      * Sets the duration, in seconds, data should be stored in the datastore. As the data store is used for
