@@ -14,20 +14,21 @@ use this module in project composer.json file
 
 run ```composer update```
 
-You can update ```authsources.php config.php saml20-sp-remote.php```. Only if you want.
+go to the path ```code/config/simplesamlphp``` 
 
-set ```IdpVariables``` in ```config```
+run ```openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out server.crt -keyout server.pem```
 
-```
-SIMPLESAMLPHP_IDP_SECRET_SALT
-SIMPLESAMLPHP_IDP_ADMIN_PASSWORD
-SIMPLESAMLPHP_IDP_SESSION_DURATION_SECONDS
-SIMPLESAMLPHP_SP_ENTITY_ID
-SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE
-SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE
-```
+You can update ```authsources.php``` ``` config.php``` ```saml20-sp-remote.php```. 
 
-Generate ```server.crt``` and ```server.pem ``` files
+Only if you want. Then run the task again.
+
+To update ```saml20-sp-remote.php``` you want to copy meta dara from ```http://your-silverstripe.site/Security/metadata```
+
+And then put it at "XML to SimpleSAMLphp metadata converter"
+
+can find your idp website ```http://your-idp-website/simplesaml/module.php/core/frontpage_federation.php```
+
 
 find ```dev/tasks/SamlFileCopyAndReplace``` and Run
 
+When doing a test run in your sp site try to login, before login make idp in saml admin ( check silverstripe-saml-sp setup )
