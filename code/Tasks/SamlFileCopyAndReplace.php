@@ -12,8 +12,8 @@ class SamlFileCopyAndReplace extends BuildTask {
             if (!mkdir('../tmp/', 0777, true)) {
                 die('Failed to create folders...');
             }
-        }
-        file_put_contents("../tmp/simplesamlphp.tar.gz", fopen($url, 'r'));
+
+            file_put_contents("../tmp/simplesamlphp.tar.gz", fopen($url, 'r'));
 
 
             // decompress from gz
@@ -24,15 +24,20 @@ class SamlFileCopyAndReplace extends BuildTask {
             $phar = new PharData('../tmp/simplesamlphp.tar');
             $phar->extractTo('../tmp/simplesamlphp');
 
-        exec ("find ../tmp/simplesamlphp -type d -exec chmod 0777 {} +");
-        exec ("find ../tmp/simplesamlphp -type f -exec chmod 0777 {} +");
-        rename("../tmp/simplesamlphp/simplesamlphp-1.18.7", "../simplesamlphp");
+            exec ("find ../tmp/simplesamlphp -type d -exec chmod 0777 {} +");
+            exec ("find ../tmp/simplesamlphp -type f -exec chmod 0777 {} +");
+            rename("../tmp/simplesamlphp/simplesamlphp-1.18.7", "../simplesamlphp");
 
-        if (touch('../simplesamlphp/modules/exampleauth/enable')) {
-            echo 'enable' . ' modification time has been changed to present time';
+            if (touch('../simplesamlphp/modules/exampleauth/enable')) {
+                echo 'enable' . ' modification time has been changed to present time';
+            } else {
+                echo 'Sorry, could not change modification time of ';
+            }
+
         } else {
-            echo 'Sorry, could not change modification time of ';
+            echo '.. tmp already exists.. ready to files copy';
         }
+
 
         $moduleCodePath = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR;
         $rootPath = dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR;
